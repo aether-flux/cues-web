@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import { Github, Terminal, Code, Layers, Star, ArrowRight, CheckCircle, Clock, Zap, Command } from 'lucide-react';
+import { Github, Terminal, Code, Layers, Star, ArrowRight, CheckCircle, Clock, Zap, Command, Circle } from 'lucide-react';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
@@ -10,7 +10,7 @@ import { Footer } from './_components/Footer';
 export default function Home () {
   const [isVisible, setIsVisible] = useState(false);
   const [typedText, setTypedText] = useState('');
-  const fullText = '$ cues add "Review PR #247" --project=backend --priority=high';
+  const fullText = '$ cues add "Review PR #247" --due "today 18:00" --priority high';
 
   useEffect(() => {
     setIsVisible(true);
@@ -55,8 +55,6 @@ export default function Home () {
       <nav className="border-b border-pine-100 bg-parchment/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            {/*<Terminal className="w-6 h-6 text-pine" />
-            <span className="text-xl font-semibold text-charcoal tracking-tight">Cues</span>*/}
             <Image src="/logos/cues_logo.svg" width={81} height={25} alt="cues logo" />
           </div>
           <div className="flex items-center gap-6">
@@ -101,11 +99,20 @@ export default function Home () {
                   <div className="text-brass mb-2">
                     <span className="text-pine">➜</span> <span className="text-parchment">~/project</span>
                   </div>
-                  <div className="text-parchment">
+                  <div className="text-parchment mb-2">
                     {typedText}<span className="animate-pulse">|</span>
                   </div>
-                  <div className="text-pine mt-3 text-sm">
-                    ✓ Task added: "Review PR #247" [backend] [high]
+                  <div className="flex items-center justify-between text-sm text-parchment w-full">
+                    <div className="flex items-center space-x-2">
+                      <span className="text-brass">[14]</span>
+                      <span className="text-red-400">[ ]</span>
+                      <span>Review PR #247</span>
+                    </div>
+
+                    <div className="flex items-center space-x-2">
+                      <Circle fill="#ef5350" strokeWidth="0" />
+                      <span className="text-[#6da2de]">11th July, 2025 18:00</span>
+                    </div>
                   </div>
                 </div>
               </div>
