@@ -16,7 +16,7 @@ interface TaskModalProps {
   task?: Task | null
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>
   tasks: Task[]
-  currentProject: Project
+  currentProject: Project | null
 }
 
 export function TaskModal({ isOpen, onClose, task, setTasks, tasks, currentProject }: TaskModalProps) {

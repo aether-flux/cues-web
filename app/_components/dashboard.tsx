@@ -11,7 +11,7 @@ import api from "@/utils/api";
 import Image from "next/image"
 
 interface DashboardProps {
-  currentProject: Project
+  currentProject: Project | null
   setCurrentProject: (project: Project | null) => void
   onProjectSwitcherOpen: () => void
   onNewTask: () => void

@@ -21,7 +21,7 @@ import Link from "next/link"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 
 interface AppSidebarProps {
-  currentProject: Project
+  currentProject: Project | null
   onProjectSelect: (project: Project) => void
   onSettingsOpen: () => void
   projects: Project[]
