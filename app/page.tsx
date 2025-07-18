@@ -1,16 +1,25 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import { Github, Terminal, Code, Layers, Star, ArrowRight, CheckCircle, Clock, Zap, Command, Circle } from 'lucide-react';
+import { Github, Terminal, Code, Layers, Star, ArrowRight, CheckCircle, Clock, Zap, Command, Circle, UserPlus, LayoutDashboard } from 'lucide-react';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { Footer } from './_components/Footer';
+import { Button } from '@/components/ui/button';
+import { LoginModal } from './_components/login-modal';
+import { SignupModal } from './_components/signup-modal';
+import { useRouter } from 'next/navigation';
 
 export default function Home () {
   const [isVisible, setIsVisible] = useState(false);
   const [typedText, setTypedText] = useState('');
   const fullText = '$ cues add "Review PR #247" --due "today 18:00" --priority high';
+
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isSignupOpen, setIsSignupOpen] = useState(false);
+
+  const router = useRouter();
 
   useEffect(() => {
     setIsVisible(true);
@@ -40,7 +49,7 @@ export default function Home () {
       icon: Layers,
       title: 'Project Overview',
       description: 'Organize tasks by project with intelligent filtering and priority management.',
-      command: '$ cues list --project=api'
+      command: '$ cues tasks'
     },
     {
       icon: Code,
@@ -59,12 +68,24 @@ export default function Home () {
           </div>
           <div className="flex items-center gap-6">
             <Link href="#features" className="text-charcoal/70 hover:text-charcoal transition-colors">Features</Link>
-            <Link href="https://github.com/aetheros/cues" className="flex items-center gap-2 bg-charcoal text-parchment px-4 py-2 rounded-lg hover:bg-charcoal/90 transition-all hover:shadow-lg">
-              <Github className="w-4 h-4" />
-              <span className="text-sm font-medium">GitHub</span>
+            <Link href="https://github.com/aetheros/cues" className="flex items-center gap-2 bg-charcoal text-parchment px-4 py-2 rounded-xl hover:scale-105 hover:bg-charcoal/90 transition-all hover:shadow-lg">
+              <Github className="w-5 h-5" />
             </Link>
+
+            <Button className="bg-pine text-parchment px-10 py-5 rounded-xl font-semibold hover:bg-pine/90 transition-all hover:shadow-xl hover:scale-105 flex items-center gap-2 cursor-pointer" onClick={() => router.push('/dashboard')}>
+              <LayoutDashboard className="w-4 h-4" />
+              <span className="text-sm font-medium">Dashboard</span>
+            </Button>
+
+            <Button className="bg-[#f5f4f1] text-[#2d5016] border-[#e8e5e0] border-2 px-10 py-5 rounded-xl font-semibold hover:bg-[#f5f4f1]/90 hover:text-[#1f3a0f] transition-all hover:shadow-xl hover:scale-105 flex items-center gap-2 cursor-pointer" onClick={() => setIsLoginOpen(true)}>
+              <Terminal className="w-4 h-4" />
+              <span className="text-sm font-medium">Log in</span>
+            </Button>
           </div>
         </div>
+
+        <LoginModal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
+        <SignupModal isOpen={isSignupOpen} onClose={() => setIsSignupOpen(false)} />
       </nav>
 
       {/* Hero Section */}
@@ -119,7 +140,7 @@ export default function Home () {
             </div>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button className="bg-pine text-parchment px-8 py-4 rounded-xl font-semibold hover:bg-pine/90 transition-all hover:shadow-xl hover:scale-105 flex items-center gap-2">
+              <button className="bg-pine text-parchment px-8 py-4 rounded-xl font-semibold hover:bg-pine/90 transition-all hover:shadow-xl hover:scale-105 flex items-center gap-2 cursor-pointer" onClick={() => setIsSignupOpen(true)}>
                 Get Started
                 <ArrowRight className="w-5 h-5" />
               </button>
@@ -133,13 +154,6 @@ export default function Home () {
             <div className="bg-charcoal rounded-lg p-3 w-1/3 font-mono text-sm text-parchment border-l-8 border-brass">
               <span className="text-brass">$</span> npm install -g @cues/cli
             </div>
-            </div>
-
-            <div className="flex items-center justify-center gap-2 text-sm text-charcoal/50 mt-13">
-              <kbd className="px-2 py-1 bg-ink/5 border border-charcoal/10 rounded text-xs font-mono">⌘</kbd>
-              <span>+</span>
-              <kbd className="px-2 py-1 bg-ink/5 border border-charcoal/10 rounded text-xs font-mono">K</kbd>
-              <span>to open command palette</span>
             </div>
           </div>
         </div>

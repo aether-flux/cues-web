@@ -15,3 +15,10 @@ export interface Project {
   userId: string;
   createdAt: string;
 };
+
+export interface User {
+  id: number;
+  username: string;
+  email: string;
+  createdAt: string;
+};
