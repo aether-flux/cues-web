@@ -46,7 +46,7 @@ export function TaskModal({ isOpen, onClose, task, setTasks, tasks, currentProje
         description,
         priority: priority === "NA" ? null : priority,
         isDone: status,
-        projectId: currentProject.id
+        projectId: currentProject?.id
       });
 
       if (res.data.task) {
