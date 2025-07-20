@@ -129,7 +129,7 @@ export function AppSidebar({ currentProject, onProjectSelect, onSettingsOpen, pr
                         </DropdownMenuItem>
                         <DropdownMenuItem
                           onClick={async () => await handleDeleteProject(project)}
-                          className="font-mono text-sm hover:bg-[#e8e5e0] hover:text-[#2d5016]"
+                          className="font-mono text-sm text-[#cd3232] hover:bg-[#e8e5e0] hover:text-[#2d5016]"
                         >
                           Delete Project 
                         </DropdownMenuItem>

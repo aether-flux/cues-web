@@ -11,8 +11,8 @@ export const Footer = () => {
             <Image src="/logos/cues_logo_dark.svg" width={58} height={18} alt="cues logo" />
           </div>
           <div className="flex items-center gap-6 text-parchment/60">
-            <Link href="#" className="hover:text-parchment transition-colors">Documentation</Link>
-            <Link href="https://github.com/aether-flux/cues" className="hover:text-parchment transition-colors">
+            <Link href="/docs" className="hover:text-parchment transition-colors">Documentation</Link>
+            <Link href="https://github.com/aether-flux/cues-web" className="hover:text-parchment transition-colors">
               <Github className="w-5 h-5" />
             </Link>
           </div>
