@@ -8,7 +8,7 @@ export interface DocMeta {
   title: string
   description: string
   slug: string
-  order?: number
+  order: number
 }
 
 export interface Doc extends DocMeta {
