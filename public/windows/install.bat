@@ -15,35 +15,19 @@ if not exist "%INSTALL_DIR%" (
 
 :: Download binary
 echo 📦 Downloading latest release...
-powershell -Command "Invoke-WebRequest -Uri \"%RELEASE_URL%\" -OutFile \"%INSTALL_DIR%\%BINARY_NAME%\""
+powershell -Command "Invoke-WebRequest -Uri '%RELEASE_URL%' -OutFile '%INSTALL_DIR%\%BINARY_NAME%'"
 
-:: Add install dir to PATH if not already added
-echo 🔧 Ensuring install path is in PATH...
+:: Create shim as cues.cmd
+echo 🛠️ Creating cues.cmd shim...
+> "%INSTALL_DIR%\cues.cmd" echo @echo off
+>> "%INSTALL_DIR%\cues.cmd" echo "%%~dp0%BINARY_NAME%" %%*
 
-echo %PATH% | find /I "%INSTALL_DIR%" >nul
-if errorlevel 1 (
-  echo 🧪 Current PATH doesn't contain %INSTALL_DIR%. Attempting to add...
+:: Add install dir to PATH (user) if not already there
+echo 🔧 Adding %INSTALL_DIR% to User PATH...
+powershell -Command "$oldPath = [Environment]::GetEnvironmentVariable('PATH', 'User'); if (-not ($oldPath -split ';' | Where-Object { $_ -eq '%INSTALL_DIR%' })) { $newPath = $oldPath + ';%INSTALL_DIR%'; [Environment]::SetEnvironmentVariable('PATH', $newPath, 'User'); Write-Output '✅ Added to PATH.' } else { Write-Output '✅ Already in PATH.' }"
 
-  :: Try to get registry PATH
-  for /f "tokens=3*" %%A in ('reg query "HKCU\Environment" /v PATH 2^>nul') do (
-    set "CURRENT_PATH=%%A %%B"
-  )
+:: Also update PATH for current session so cues works immediately
+set PATH=%INSTALL_DIR%;%PATH%
 
-  call set CURRENT_PATH=%CURRENT_PATH%
-  echo 🧪 Registry PATH: %CURRENT_PATH%
-
-  echo %CURRENT_PATH% | find /I "%INSTALL_DIR%" >nul
-  if errorlevel 1 (
-    set "NEW_PATH=%CURRENT_PATH%;%INSTALL_DIR%"
-    reg add "HKCU\Environment" /v PATH /t REG_EXPAND_SZ /d "%NEW_PATH%" /f >nul
-    echo ✅ Added %INSTALL_DIR% to PATH via registry.
-    echo 🔁 Please log out and log back in (or reboot) to apply it.
-  ) else (
-    echo ✅ Install path already in PATH (registry).
-  )
-) else (
-  echo ✅ Install path already in PATH (session).
-)
-
-echo 🎉 Done! You can now run "%CLI_NAME%" from any terminal (after logout/login if needed).
+echo 🎉 Done! You can now run "%CLI_NAME%" from any new terminal window.
 pause
