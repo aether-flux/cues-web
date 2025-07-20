@@ -105,6 +105,10 @@ export default function Home () {
             Features
           </Link>
 
+          <Link href="/docs" className="mt-4 text-charcoal/80 hover:text-charcoal transition-colors text-center" onClick={() => setIsMobileMenuOpen(false)}>
+            Documentation
+          </Link>
+
           <Button asChild>
             <Link href="https://github.com/aetheros/cues-backend" className="flex items-center gap-2 bg-charcoal text-parchment px-4 py-2 rounded-xl hover:scale-105 hover:bg-charcoal/90 transition-all hover:shadow-lg" onClick={() => setIsMobileMenuOpen(false)}>
               <Github className="w-5 h-5" />
@@ -196,9 +200,19 @@ export default function Home () {
               </Link>
             </div>
 
-            <div className="flex justify-center my-7">
-              <div className="bg-charcoal rounded-lg p-3 w-5/6 md:w-1/3 font-mono text-sm text-parchment border-l-8 border-brass">
-                <span className="text-brass">$</span> npm install -g @cues/cli
+            <div className="flex flex-col md:flex-row justify-center items-start gap-5 md:gap-15 mb-10 mt-10">
+              <div className="flex flex-col items-center justify-center gap-4">
+                <span className="text-sm md:text-lg text-charcoal/70 leading-relaxed">On Linux systems</span>
+                <div className="bg-charcoal rounded-lg p-3 font-mono text-sm md:text-md text-parchment border-l-8 border-brass">
+                  <span className="text-brass">$</span> curl -fsSL https://cues-web.vercel.app/linux/install.sh | bash
+                </div>
+              </div>
+
+              <div className="flex flex-col items-center justify-center gap-4">
+                <span className="text-sm md:text-lg text-charcoal/70 leading-relaxed">On Windows systems</span>
+                <div className="bg-charcoal rounded-lg p-3 font-mono text-sm md:text-md text-parchment border-l-8 border-brass">
+                  <span className="text-brass">$</span> curl -L https://cues-web.vercel.app/windows/install.bat -o install.bat && install.bat
+                </div>
               </div>
             </div>
           </div>
@@ -242,7 +256,7 @@ export default function Home () {
 
       {/* CTA Section */}
       <section className="py-24 bg-pine text-parchment">
-        <div className="max-w-4xl mx-auto text-center px-6">
+        <div className=" mx-auto text-center px-6">
           <h2 className="text-4xl font-bold mb-6">Ready to boost your productivity?</h2>
           <p className="text-xl text-parchment/80 mb-12 max-w-2xl mx-auto">
             Join developers who have made task management effortless with Cues.
@@ -262,9 +276,19 @@ export default function Home () {
             </Link>
           </div>
 
-          <div className="mt-12 pt-8 border-t border-parchment/20">
-            <div className="bg-charcoal/50 rounded-lg p-3 font-mono text-sm text-parchment border-l-4 border-brass">
-              <span className="text-brass">$</span> npm install -g @cues/cli
+          <div className="flex flex-col md:flex-row justify-center items-start gap-5 md:gap-10 mt-12 pt-8 px-8 md:px-0 border-t border-parchment/20">
+            <div className="flex flex-col items-center justify-center gap-4">
+              <span className="text-sm md:text-lg text-parchment leading-relaxed">On Linux systems</span>
+              <div className="bg-charcoal rounded-lg p-3 font-mono text-sm md:text-md text-parchment border-l-8 border-brass">
+                <span className="text-brass">$</span> curl -fsSL https://cues-web.vercel.app/linux/install.sh | bash
+              </div>
+            </div>
+
+            <div className="flex flex-col items-center justify-center gap-4">
+              <span className="text-sm md:text-lg text-parchment leading-relaxed">On Windows systems</span>
+              <div className="bg-charcoal rounded-lg p-3 font-mono text-sm md:text-md text-parchment border-l-8 border-brass">
+                <span className="text-brass">$</span> curl -L https://cues-web.vercel.app/windows/install.bat -o install.bat && install.bat
+              </div>
             </div>
           </div>
         </div>

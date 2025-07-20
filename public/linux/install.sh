@@ -1,0 +1,37 @@
+#!/bin/bash
+
+CLI_NAME="cues"
+BINARY_NAME="cli"
+INSTALL_PATH="/usr/local/bin/$CLI_NAME"
+RELEASE_URL="https://github.com/aether-flux/cues-cli/releases/latest/download/$BINARY_NAME"
+
+echo "🚀 Installing $CLI_NAME..."
+
+# Check dependencies
+if ! command -v curl >/dev/null 2>&1; then
+    echo "❌ 'curl' is required but not installed."
+    exit 1
+fi
+
+# Download the binary
+echo "📦 Downloading latest release from GitHub..."
+curl -fsSL "$RELEASE_URL" -o "$BINARY_NAME"
+
+# Make it executable
+chmod +x "$BINARY_NAME"
+
+# Move to /usr/local/bin as 'cues'
+if command -v sudo >/dev/null 2>&1; then
+    sudo mv "$BINARY_NAME" "$INSTALL_PATH"
+else
+    echo "⚠️ 'sudo' not found. Attempting to install without it..."
+    mv "$BINARY_NAME" "$INSTALL_PATH" || {
+        echo "❌ Failed to move binary to $INSTALL_PATH. Try running as root."
+        exit 1
+    }
+fi
+
+# Confirm install
+echo "✅ $CLI_NAME installed successfully!"
+echo "💡 Run '$CLI_NAME --help' to get started."
+
