@@ -2,14 +2,15 @@ import { getAllDocs, getDocBySlug } from "@/utils/docs"
 import { DocsLayout } from "@/app/_components/docs-layout"
 import { MDXContent } from "@/app/_components/mdx-content"
 import { notFound } from "next/navigation"
+// import type { PageProps } from "next"
 
-interface DocsPageProps {
-  params: {
-    slug?: string[]
-  }
-}
+// interface DocsPageProps {
+//   params: {
+//     slug?: string[]
+//   }
+// }
 
-export default async function DocsPage({ params }: DocsPageProps) {
+export default async function DocsPage({ params }: { params: { slug?: string[] } }) {
   const slug = params.slug?.join("/") || "index"
   const doc = getDocBySlug(slug)
 
