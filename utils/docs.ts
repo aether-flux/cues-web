@@ -6,7 +6,7 @@ const docsDirectory = path.join(process.cwd(), "docs")
 
 export interface DocMeta {
   title: string
-  description?: string
+  description: string
   slug: string
   order?: number
 }
@@ -68,7 +68,7 @@ export function getAllDocs(): DocMeta[] {
               description: doc.description,
               slug: doc.slug,
               order: doc.order || 0,
-            }
+            } as DocMeta
           : null
       })
       .filter((doc): doc is DocMeta => doc !== null)
