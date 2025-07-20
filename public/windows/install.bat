@@ -15,7 +15,7 @@ if not exist "%INSTALL_DIR%" (
 
 :: Download binary
 echo 📦 Downloading latest release...
-powershell -Command "Invoke-WebRequest -Uri '%RELEASE_URL% -OutFile '%INSTALL_DIR%\%BINARY_NAME%'"
+powershell -Command "Invoke-WebRequest -Uri \"%RELEASE_URL%\" -OutFile \"%INSTALL_DIR%\%BINARY_NAME%\""
 
 :: Add install dir to PATH if not already added
 echo 🔧 Ensuring install path is in PATH...
