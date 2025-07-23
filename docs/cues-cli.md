@@ -11,7 +11,11 @@ The Cues CLI provides powerful command-line tools for managing your tasks and pr
 ## Installation
 
 ```bash
-npm install -g @cues/cli
+# For Linux:
+curl -fsSL https://cues-web.vercel.app/linux/install.sh | bash
+
+# For Windows
+curl -L https://cues-web.vercel.app/windows/install.bat -o install.bat && install.bat
 ```
 
 ## Global Options

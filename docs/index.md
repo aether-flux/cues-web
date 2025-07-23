@@ -24,7 +24,11 @@ Cues helps developers organize their projects and tasks with:
 Install the Cues CLI globally:
 
 ```bash
-npm install -g @cues/cli
+# For Linux:
+curl -fsSL https://cues-web.vercel.app/linux/install.sh | bash
+
+# For Windows
+curl -L https://cues-web.vercel.app/windows/install.bat -o install.bat && install.bat
 ```
 
 ### Authentication
