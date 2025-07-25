@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://cues-web.vercel.app
+
+# Sitemaps
+Sitemap: https://cues-web.vercel.app/sitemap.xml
