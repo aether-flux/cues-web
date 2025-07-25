@@ -50,7 +50,6 @@ export function SettingsModal({ isOpen, onClose, currentProject }: SettingsModal
 
   const onLogout = async () => {
     const res = await api.post('/auth/logout');
-    console.log("Logout response: ", res);
 
     useAuthStore.getState().clearAuth();
 
