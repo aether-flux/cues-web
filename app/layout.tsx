@@ -75,6 +75,7 @@ export default function RootLayout({
       <head>
         <meta name="google-site-verification" content="wHBP3UY22MdwxHj2dr8PMLMDNjB3UOYFWdnziByyppg" />
         <meta name="apple-mobile-web-app-title" content="Cues" />
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="e146d63d-f86e-446e-acc5-efc8a336a651"></script>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${jetbrainsMono.variable} antialiased`}
